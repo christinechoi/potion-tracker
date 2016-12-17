@@ -1,9 +1,9 @@
 
 
 
-<h3> Collections: </h3>
+<h3> All Collections: </h3>
 
 <% @collections.each do |collection| %>
-  <ul><a href <%= collection.name %></a></ul>
+  <ul><a href="/collection/:id"><%= collection.name %></a></ul>
 
 <% end %>
