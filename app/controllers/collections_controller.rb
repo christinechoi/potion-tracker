@@ -3,13 +3,11 @@ class CollectionsController < ApplicationController
   get '/collections' do 
     @collections = Collection.all
 
-    erb :index
+    erb :'collections/index'
   end
 
 
   get '/collections/new' do 
-
-
 
     erb :'collections/new'
   end
@@ -31,7 +29,7 @@ class CollectionsController < ApplicationController
 
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
-
+    @collection.save
 
     erb :'/collections/show'
   end
