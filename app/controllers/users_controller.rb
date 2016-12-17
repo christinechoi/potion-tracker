@@ -12,12 +12,12 @@ class UsersController < ApplicationController
 
 
   post '/signup' do 
-    redirect :'/signup' if params[:username] == "" || params[:password] == ""
+    #redirect :'/login' if params[:username] == "" || params[:password] == ""
     
     @user = User.create(username: params[:username], password: params[:password])
     #session[:id] = @user.id
 
-    redirect :'/collections/new'
+    redirect :"/users/#{current_user.slug}"
   end
 
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
 
   post '/login' do 
-    @user = User.find_by(username: params[:username] ).try(:authenticate, params[:password])
+    @user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
     session[:id] = @user.id
     redirect :'/collections'
   end
