@@ -30,7 +30,7 @@ class CollectionsController < ApplicationController
   end
 
   post '/collections' do 
-    
+    @collection = Collection.create(name: params[:name])
 
   end
 
