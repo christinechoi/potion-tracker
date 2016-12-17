@@ -32,6 +32,8 @@ class CollectionsController < ApplicationController
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
 
+
+    erb :'/collections/show'
   end
 
 
