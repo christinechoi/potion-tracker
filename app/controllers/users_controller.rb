@@ -1,29 +1,35 @@
+
+
+
 class UsersController < ApplicationController 
 
 
 
-  get '/users/signup' do 
+  get '/signup' do 
+
     erb :'/users/signup'
   end
 
 
-  post '/users/signup' do 
+  post '/signup' do 
+    redirect :'/signup' if params[:username] == "" || params[:password] == ""
+    
+    @user = User.create(username: params[:username], password: params[:password])
+    #session[:id] = @user.id
 
-    @user = User.create(params)
-    session[:id] = user.id
-
-    redirect :'/collections'
+    redirect :'/collections/new'
   end
 
 
-  get '/users/login' do 
+  get '/login' do 
     erb :'/users/login'
   end
 
 
-  post '/users/login' do 
-
-
+  post '/login' do 
+    @user = User.find_by(username: params[:username] ).try(:authenticate, params[:password])
+    session[:id] = @user.id
+    redirect :'/collections'
   end
 
   get '/users/:slug' do 
