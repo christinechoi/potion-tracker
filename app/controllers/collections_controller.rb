@@ -29,7 +29,10 @@ class CollectionsController < ApplicationController
 
   end
 
+  post '/collections' do 
+    
 
+  end
 
 
 
