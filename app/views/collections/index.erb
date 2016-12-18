@@ -4,6 +4,6 @@
 <h3> All Collections: </h3>
 
 <% Collection.all.each do |collection| %>
-  <ul><a href="/collection/:id"><%= collection.name %></a></ul>
+  <ul><a href="/collections/<%= collection.id %>"><%= collection.name %></a></ul>
 
 <% end %>

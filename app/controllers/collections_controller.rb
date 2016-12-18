@@ -20,7 +20,9 @@ class CollectionsController < ApplicationController
 
 
   get '/collections/:id' do 
-
+    @collection = Collection.find(params[:id])
+    
+    erb :'/collections/show'
   end
 
 
@@ -30,7 +32,6 @@ class CollectionsController < ApplicationController
 
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
-    
 
     erb :'/collections/show'
   end

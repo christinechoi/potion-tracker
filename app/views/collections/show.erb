@@ -2,7 +2,14 @@
 
 
 
-<h3>Collection:</h3>
+<h3><%= @collection.name %></h3>
 
-<%= @collection.name %>
+
+<h4>Products</h4>
+
+<h3><% @collection.products.each do |product|%>
+   <ul><a href="/products/<%=product.id%>"><%= product.name %></a></ul>
+
+<% end%>
+
 

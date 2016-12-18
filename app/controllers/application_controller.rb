@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
   end
 
   enable :sessions
-
+ 
 
   helpers do
     def redirect_if_not_logged_in
@@ -23,6 +23,7 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:id])
     end
+
   end
 
 
