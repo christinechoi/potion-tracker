@@ -29,7 +29,7 @@ class CollectionsController < ApplicationController
 
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
-    @collection.save
+    
 
     erb :'/collections/show'
   end
