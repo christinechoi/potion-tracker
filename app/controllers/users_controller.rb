@@ -1,9 +1,5 @@
 
-
-
 class UsersController < ApplicationController 
-
-
 
   get '/signup' do 
     erb :'/users/signup'
@@ -11,12 +7,16 @@ class UsersController < ApplicationController
 
 
   post '/signup' do 
-    redirect :'/login' if params[:username] == "" || params[:password] == ""
     
-    @user = User.create(username: params[:username], password: params[:password])
-    session[:id] = @user.id
+    if params[:username] == "" || params[:password] == ""
+      redirect to '/signup'
+    else
+      @user = User.create(params)#username: params[:username], password: params[:password])
+      session[:id] = @user.id
+    end
 
-    redirect :"/users/#{current_user.slug}"
+
+    redirect :"/collections"
   end
 
 
@@ -29,10 +29,14 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
     session[:id] = @user.id
     redirect :'/user/:id'
+
+
   end
 
   get '/users/:id' do 
+    #redirect_if_not_logged_in
 
+    @user = User.find(params[:id])
 
     erb :'/users/show'
   end

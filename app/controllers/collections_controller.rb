@@ -1,13 +1,15 @@
 class CollectionsController < ApplicationController 
 
   get '/collections' do 
-    @collections = Collection.all
+    #redirect_if_not_logged_in
+    #@collections = Collection.all
 
     erb :'collections/index'
   end
 
 
   get '/collections/new' do 
+    redirect_if_not_logged_in
 
     erb :'collections/new'
   end
