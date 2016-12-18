@@ -3,7 +3,7 @@
 
 <h3> All Collections: </h3>
 
-<% current_user.collections.each do |collection| %>
+<% Collection.all.each do |collection| %>
   <ul><a href="/collection/:id"><%= collection.name %></a></ul>
 
 <% end %>

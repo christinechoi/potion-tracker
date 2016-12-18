@@ -11,12 +11,12 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @user = User.create(params)#username: params[:username], password: params[:password])
-      session[:id] = @user.id
+      @user = User.create(username: params[:username], password: params[:password])
+      session[:user_id] = @user.id
     end
 
 
-    redirect :"/collections"
+    redirect :"/users/show"
   end
 
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     #redirect_if_not_logged_in
 
     @user = User.find(params[:id])
-
+    raise "error"
     erb :'/users/show'
   end
 
