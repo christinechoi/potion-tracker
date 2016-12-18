@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
 
 
 
-  get '/products' do 
-
+  get '/products/new' do 
+    
     erb :'/products/new'
   end
 
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
   get '/products/:id' do 
-    
+
 
   end
 
