@@ -1,13 +1,14 @@
 
 
-<h2> Edit Product </h2>
+<h2> Edit <%= @product.name %> </h2>
 
 
 <form method="post" action="/products">
 
-  <h4> Name: <input type="text" name="name"></h4>
-  <h4> Brand: <input type="text" name="brand"></h4>
-  <h4> Description: <input type="text" name="description"></h4>
+  <h4> Name: <input type="text" name="name" value="<%= @product.name %>"></h4>
+  <h4> Brand: <input type="text" name="brand" value="<%= @product.brand %>"></h4>
+  <h4> Description: <input type="text" name="description" value="<%= @product.description %>"></h4>
   <input type="submit" name="submit">
 
 </form>
+
