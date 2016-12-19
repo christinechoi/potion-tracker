@@ -16,6 +16,7 @@ class CollectionsController < ApplicationController
 
   get '/collections/:id/edit' do 
     @collection = Collection.find(params[:id])
+    #fields should have previous info filled in 
 
      erb :'/collections/edit'
   end

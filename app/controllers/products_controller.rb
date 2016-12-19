@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
 
 
   get '/products' do 
-
     erb :'/products/index'
   end
 
@@ -12,13 +11,27 @@ class ProductsController < ApplicationController
   end
 
   post '/products' do 
-    @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
+    
+    if params[:name] == "" || params[:brand] == "" 
+      redirect :'/products/new' 
+    else
+      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
+      # add to collection if one is checked
+      # if none is checked, there must be new collection
+        #add product to new collection
 
-    redirect :'/products/:id' 
+      # collection should be one belonging to current_user
+      
+      # 
+      # @user = User.find(session[:id])
+      # @user.collection
+    end
+
+    redirect :'/products' 
   end
 
   get '/products/:id' do 
-    @product = Product.find_by(id: params[:id])
+    @product = Product.find(params[:id])
 
     erb :'/products/show'
   end
