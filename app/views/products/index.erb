@@ -1,0 +1,9 @@
+
+
+
+<h3> All Products: </h3>
+
+<% Product.all.each do |product| %>
+  <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
+
+<% end %>

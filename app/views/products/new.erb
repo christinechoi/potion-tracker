@@ -11,10 +11,7 @@
   <h4>Brand: <input type="text" name="brand"></h4>
   <h4>Description: <input type="text" name="description"></h4>
   <h4>Collection: </h4>
-    <% current_user.collections.all.each do |collection| %>
-      <input type="checkbox" value="<%= collection.id %>" id="<%= collection.name %>"><%= collection.name %>
-
-    <% end %>
+    
 
 
 

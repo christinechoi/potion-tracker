@@ -15,7 +15,9 @@ class CollectionsController < ApplicationController
 
 
   get '/collections/:id/edit' do 
+    @collection = Collection.find(params[:id])
 
+     erb :'/collections/edit'
   end
 
 
