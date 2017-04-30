@@ -11,6 +11,11 @@
   <h4>Brand: <input type="text" name="brand"></h4>
   <h4>Description (optional): <input type="text" name="description"></h4>
   
+
+  <%@collections.each do |collection|%>
+    <input type="checkbox" name="product[collection_ids][]" value="<%=collection.id%>" id="<%=collection.id%>"><%=collection.name%></input>
+  <%end%>
+
 <!-- <h4>Choose an Existing Collection: </h4>
   <% @collections.each do |collection| %> 
     <input type="checkbox" name="user[collection_ids][]" id="<%=collection.id%>" value="<%=collection.id%>"><%=collection.name%></input>
@@ -19,5 +24,8 @@
 
 
   <input type="submit" name="submit">
+
+
+  <h3><a href="/collections"> Cancel </h3>
 
 </form>

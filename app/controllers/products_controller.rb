@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     if params[:name] == "" || params[:brand] == "" 
       redirect :'/products/new' 
     else
-      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
+      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description], collection_id: params[:collection_id])
       
 
       # add to collection if one is checked
