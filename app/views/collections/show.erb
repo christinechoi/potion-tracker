@@ -9,7 +9,7 @@
 
 <% if @products %>
   <h4><% @products.each do |product|%>
-    <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
+    <ul><a href="/products/<%= product.id %>"><%= product.brand %><%= product.name %></a></ul>
   <% end%>
 <% end %>
 
