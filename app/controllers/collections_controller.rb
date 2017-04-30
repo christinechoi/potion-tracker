@@ -28,6 +28,7 @@ class CollectionsController < ApplicationController
     redirect_if_not_logged_in
     
     @collection = Collection.find(params[:id])
+    @products = @collection.products
 
     erb :'/collections/show'
   end

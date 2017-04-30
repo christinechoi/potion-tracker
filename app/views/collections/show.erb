@@ -8,7 +8,7 @@
 <h4>Products:</h4>
 <ul><a href="/products/new">Add New Product</a></ul>
 
-<h3><% @collection.products.each do |product|%>
+<h3><% @products.each do |product|%>
    <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
 <% end%>
 

@@ -13,11 +13,12 @@ class ProductsController < ApplicationController
 
   post '/products' do 
     # binding.pry
+
     if params[:name] == "" || params[:brand] == "" 
       redirect :'/products/new' 
     else
-      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description], collection_id: params[:collection_id])
-      
+      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
+      @product = Product.create(params[:product])
 
       # add to collection if one is checked
       # if none is checked, there must be new collection
@@ -30,7 +31,7 @@ class ProductsController < ApplicationController
       # @user.collection
     end
 
-    redirect :'/products' 
+    redirect "products/#{@product.id}"
   end
 
   get '/products/:id' do 
