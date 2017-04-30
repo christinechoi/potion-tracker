@@ -6,12 +6,16 @@
 
 
 <h4>Products:</h4>
-<ul><a href="/products/new">Add New Product</a></ul>
 
-<h3><% @products.each do |product|%>
+
+<h4><% @products.each do |product|%>
    <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
 <% end%>
 
+
+
+
+<h3><a href="/products/new">Add New Product</a></h3>
 
 <h3><a href="/collections"> Back to Collections </h3>
 
