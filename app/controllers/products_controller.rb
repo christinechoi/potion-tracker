@@ -7,15 +7,18 @@ class ProductsController < ApplicationController
 
   get '/products/new' do 
     #redirect_if_not_logged_in
+    @collections = Collection.all 
     erb :'/products/new'
   end
 
   post '/products' do 
-    
+    # binding.pry
     if params[:name] == "" || params[:brand] == "" 
       redirect :'/products/new' 
     else
       @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
+      
+
       # add to collection if one is checked
       # if none is checked, there must be new collection
         #add product to new collection
@@ -38,8 +41,16 @@ class ProductsController < ApplicationController
 
   get '/products/:id/edit' do 
     @product = Product.find(params[:id])
+    
 
     erb :'/products/edit'
+  end
+
+  post '/products/:id' do 
+    @product = Product.find(params[:id])
+    @product.update(name: params[:name], brand: params[:brand], description: params[:description])
+
+    erb :'/products/show'
   end
 
 
