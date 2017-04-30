@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217171753) do
+ActiveRecord::Schema.define(version: 20170430173618) do
+
+  create_table "collection_products", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "product_id"
+  end
 
   create_table "collections", force: :cascade do |t|
     t.text    "name"
@@ -19,10 +24,9 @@ ActiveRecord::Schema.define(version: 20161217171753) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.text    "name"
-    t.text    "brand"
-    t.text    "description"
-    t.integer "collection_id"
+    t.text "name"
+    t.text "brand"
+    t.text "description"
   end
 
   create_table "users", force: :cascade do |t|
