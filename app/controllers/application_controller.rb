@@ -10,36 +10,57 @@ class ApplicationController < Sinatra::Base
     enable :sessions
   end
 
-  get '/' do
-    erb :home
+  get "/" do
+    erb :index
   end
 
-  get '/registrations/signup' do
-    erb :'/registrations/signup'
+  get "/signup" do
+    erb :signup
   end
 
-  post '/registrations' do
-    @user = User.new(name: params["name"], password: params["password"])
-    @user.save
-    session[:id] = @user.id
-    redirect '/users/home'
-  end
+  post "/signup" do
+    @user = User.new(:username => params[:username], :password => params[:password])
 
-  get '/sessions/login' do
-
-  end
-
-  post '/sessions' do
+    if @user.save
+      redirect '/success'
+    else 
+      redirect '/failure'
+    end
 
   end
 
-  get '/sessions/logout' do
-
+  get "/login" do
+    erb :login
   end
 
-  get '/users/home'  do
+  post "/login" do
+    @user = User.find_by(:username => params[:username])
 
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/success'
+    else
+      redirect '/failure'
+    end
   end
+
+  get "/success" do
+    if logged_in?
+      erb :success
+    else
+      redirect "/login"
+    end
+  end
+
+  get "/failure" do
+    erb :failure
+  end
+
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+    
 
 
 
