@@ -14,52 +14,53 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
-  get "/signup" do
-    erb '/users/signup'
-  end
 
-  post "/signup" do
-    @user = User.new(:username => params[:username], :password => params[:password])
+  # get "/signup" do
+  #   erb :'users/signup'
+  # end
 
-    if @user.save
-      redirect '/success'
-    else 
-      redirect '/failure'
-    end
+  # post "/signup" do
+  #   @user = User.new(:username => params[:username], :password => params[:password])
 
-  end
+  #   if @user.save
+  #     redirect '/success'
+  #   else 
+  #     redirect '/failure'
+  #   end
 
-  get "/login" do
-    erb :login
-  end
+  # end
 
-  post "/login" do
-    @user = User.find_by(:username => params[:username])
+  # get "/login" do
+  #   erb :login
+  # end
 
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect '/success'
-    else
-      redirect '/failure'
-    end
-  end
+  # post "/login" do
+  #   @user = User.find_by(:username => params[:username])
 
-  get "/success" do
-    if logged_in?
-      erb :success
-    else
-      redirect "/login"
-    end
-  end
+  #   if @user && @user.authenticate(params[:password])
+  #     session[:user_id] = @user.id
+  #     redirect '/success'
+  #   else
+  #     redirect '/failure'
+  #   end
+  # end
 
-  get "/failure" do
-    erb :failure
-  end
+  # get "/success" do
+  #   if logged_in?
+  #     erb :success
+  #   else
+  #     redirect "/login"
+  #   end
+  # end
 
-  get "/logout" do
-    session.clear
-    redirect "/"
-  end
+  # get "/failure" do
+  #   erb :failure
+  # end
+
+  # get "/logout" do
+  #   session.clear
+  #   redirect "/"
+  # end
     
 
 
