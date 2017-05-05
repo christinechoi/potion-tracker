@@ -1,6 +1,8 @@
 
 class UsersController < ApplicationController 
 
+  use Rack::Flash
+
   get '/signup' do 
     if !logged_in?
       erb :'/users/signup'
@@ -10,10 +12,10 @@ class UsersController < ApplicationController
   end
 
 
-  # get '/home' do
-  #   @user = User.find(session[:id])
-  #   erb :'/users/home'
-  # end
+  get '/users/show' do
+    @user = User.find(session[:id])
+    erb :'/users/home'
+  end
 
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
@@ -42,11 +44,15 @@ class UsersController < ApplicationController
 
 
   post '/login' do 
+
     @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect :'/collections'
+      flash.now[:notice] = "Successfully created new user."
+      redirect '/users/show'
     else
+      binding.pry
+      flash[:notice] = "Successfully created new user."
       flash[:error] = "Your login information seems to be incorrect."
       redirect to '/login'
     end

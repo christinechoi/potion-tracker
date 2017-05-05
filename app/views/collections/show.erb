@@ -1,6 +1,10 @@
 
 
 
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 
 <h3> Collection: <%= @collection.name %></h3>
 

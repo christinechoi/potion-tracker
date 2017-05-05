@@ -18,7 +18,6 @@ class CollectionsController < ApplicationController
   get '/collections/:id/edit' do 
     redirect_if_not_logged_in
     @collection = Collection.find(params[:id])
-    #fields should have previous info filled in 
 
      erb :'/collections/edit'
   end
@@ -36,7 +35,7 @@ class CollectionsController < ApplicationController
 
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
-
+    flash.now[:message] = "Successfully created new collection."
     erb :'/collections/show'
   end
 

@@ -5,7 +5,11 @@
 
 <form method="post" action="/login">
 
-  <h4>Username: <input type="text" name="name"></h4>
+  <% if flash.has?(:error) %>
+    <%= flash[:error] %>
+  <% end %>
+
+  <h4>Username: <input type="text" name="username"></h4>
   <h4>Password: <input type="text" name="password"></h4>
   
   <input type="submit" name="submit">

@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
 
   post '/products' do 
     # binding.pry
-
+    flash.now[:message] = "Successfully created new product."
     if params[:name] == "" || params[:brand] == "" 
       redirect :'/products/new' 
     else
@@ -48,6 +48,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products/:id' do 
+    flash.now[:message] = "Successfully updated product."
     @product = Product.find(params[:id])
     @product.update(name: params[:name], brand: params[:brand], description: params[:description])
 

@@ -1,6 +1,9 @@
 require './config/environment'
 require 'pry'
 
+require 'sinatra/base'
+require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -8,11 +11,13 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :session_secret, "sluglife"
     enable :sessions
+    use Rack::Flash
   end
 
   get "/" do
     erb :home
   end
+
 
 
   # get "/signup" do
