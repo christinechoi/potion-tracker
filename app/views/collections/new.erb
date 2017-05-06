@@ -6,6 +6,7 @@
 <form method="post" action="/collections">
 
   <h4>Name/Category (e.g. "AM Routine", "All Prescriptions", "Skincare"): <input type="text" name="name"></h4>
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
   <br>
   <input type="submit" name="submit">
 

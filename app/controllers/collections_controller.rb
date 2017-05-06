@@ -34,7 +34,8 @@ class CollectionsController < ApplicationController
 
 
   post '/collections' do 
-    @collection = Collection.create(name: params[:name])
+    # binding.pry
+    @collection = Collection.create(name: params[:name], user_id: params[:user_id])
     flash.now[:notice] = "Successfully created new collection."
     erb :'/collections/show'
   end
