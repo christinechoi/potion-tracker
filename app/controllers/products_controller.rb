@@ -13,24 +13,17 @@ class ProductsController < ApplicationController
 
   post '/products' do 
     # binding.pry
-    flash.now[:message] = "Successfully created new product."
-    if params[:name] == "" || params[:brand] == "" 
+    # flash.now[:notice] = "Successfully created new product." 
+    if params[:product][:name] == "" || params[:product][:brand] == "" 
+      flash[:notice] = "Name and Brand fields required." #this didn't show 
+    
       redirect :'/products/new' 
     else
       @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
       @product = Product.create(params[:product])
 
-      # add to collection if one is checked
-      # if none is checked, there must be new collection
-        #add product to new collection
-
-      # collection should be one belonging to current_user
-      
-      # 
-      # @user = User.find(session[:id])
-      # @user.collection
     end
-
+    flash[:notice] = "Successfully added new product."
     redirect "products/#{@product.id}"
   end
 
@@ -48,7 +41,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products/:id' do 
-    flash.now[:notice] = "Successfully updated product."
+    flash[:notice] = "Successfully updated product." 
     @product = Product.find(params[:id])
     @product.update(name: params[:name], brand: params[:brand], description: params[:description])
 
