@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products/:id' do 
-    flash.now[:message] = "Successfully updated product."
+    flash.now[:notice] = "Successfully updated product."
     @product = Product.find(params[:id])
     @product.update(name: params[:name], brand: params[:brand], description: params[:description])
 

@@ -35,7 +35,7 @@ class CollectionsController < ApplicationController
 
   post '/collections' do 
     @collection = Collection.create(name: params[:name])
-    flash.now[:message] = "Successfully created new collection."
+    flash.now[:notice] = "Successfully created new collection."
     erb :'/collections/show'
   end
 
