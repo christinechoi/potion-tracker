@@ -11,7 +11,8 @@
   <h4>Brand: <input type="text" name="product[brand]"></h4>
   <h4>Description (optional): <input type="text" name="product[description]"></h4>
   
-
+  <br>
+  <h4>Collection:</h4>
   <%@collections.each do |collection|%>
     <input type="checkbox" name="product[collection_ids][]" value="<%=collection.id%>" id="<%=collection.id%>"><%=collection.name%></input>
   <%end%>
@@ -21,8 +22,8 @@
     <input type="checkbox" name="user[collection_ids][]" id="<%=collection.id%>" value="<%=collection.id%>"><%=collection.name%></input>
   <%end%> -->
 
-
-
+  <br>
+  <br>
   <input type="submit" name="submit">
 
 
