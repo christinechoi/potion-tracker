@@ -51,11 +51,16 @@ class UsersController < ApplicationController
       flash.now[:notice] = "Successfully created new user."
       redirect '/users/show'
     else
-      binding.pry
       flash[:notice] = "Successfully created new user."
       flash[:error] = "Your login information seems to be incorrect."
       redirect to '/login'
     end
+  end
+
+  get '/signout' do
+    session.clear
+    flash.now[:notice] = "Successfully signed out."
+    redirect '/login'
   end
 
     #   post "/login" do
