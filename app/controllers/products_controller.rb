@@ -2,11 +2,12 @@ class ProductsController < ApplicationController
 
 
   get '/products' do 
+    redirect_if_not_logged_in
     erb :'/products/index'
   end
 
   get '/products/new' do 
-    # redirect_if_not_logged_in
+    redirect_if_not_logged_in
     @collections = Collection.all 
     erb :'/products/new'
   end
@@ -28,14 +29,15 @@ class ProductsController < ApplicationController
   end
 
   get '/products/:id' do 
+    redirect_if_not_logged_in
     @product = Product.find(params[:id])
 
     erb :'/products/show'
   end
 
   get '/products/:id/edit' do 
+    redirect_if_not_logged_in
     @product = Product.find(params[:id])
-    
 
     erb :'/products/edit'
   end
