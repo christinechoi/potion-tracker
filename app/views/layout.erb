@@ -17,7 +17,11 @@
         <li><a href="/signout">Sign out</a></li>
       <% end %>
 
+    <% if flash.has?(:notice) %>
+    <p><%= flash[:notice] %></p>
+    <% end %>
 
+    
       
       <%= yield %>
  

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
     if user.save
+      flash.now[:notice] = "Successfully created new user."
       redirect "/login"
     else
       redirect "/failure"
@@ -34,17 +35,17 @@ class UsersController < ApplicationController
     @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      flash.now[:notice] = "Successfully created new user."
+      flash[:notice] = "Successfully created new user."
       redirect '/users/show'
     else
-      flash[:error] = "Your login information seems to be incorrect."
-      redirect to '/login'
+      flash[:notice] = "Error logging in - please try again." #not showing
+      redirect to "/login"
     end
   end
 
   get '/signout' do
     session.clear
-    flash[:notice] = "Successfully signed out."
+    flash[:notice] = "Successfully signed out." #not showing
     redirect '/login'
   end
 

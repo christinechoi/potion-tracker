@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   get '/products/new' do 
-    #redirect_if_not_logged_in
+    # redirect_if_not_logged_in
     @collections = Collection.all 
     erb :'/products/new'
   end
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     # binding.pry
     # flash.now[:notice] = "Successfully created new product." 
     if params[:product][:name] == "" || params[:product][:brand] == "" 
-      flash[:notice] = "Name and Brand fields required." #this didn't show 
+      flash[:notice] = "Name and Brand fields required."
     
       redirect :'/products/new' 
     else
