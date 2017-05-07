@@ -51,4 +51,13 @@ class ProductsController < ApplicationController
   end
 
 
+
+  delete '/products/:id/delete' do #delete action
+    @product = Product.find_by_id(params[:id])
+    @product.delete
+    flash[:notice] = "Product deleted."
+    redirect to '/products'
+  end
+
+
 end

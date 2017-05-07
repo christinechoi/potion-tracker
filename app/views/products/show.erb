@@ -13,6 +13,15 @@
 
 <h4><a href="/products/<%= @product.id %>/edit">Click to edit </a></h4>
 
+
+
+<form action="/products/<%= @product.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete product">
+</form>
+
+
+
 <h4><a href="/collections"> Back to Collections </a></h4>
 
 
