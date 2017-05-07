@@ -11,6 +11,13 @@
  
     <div class="container">
       <h1>Potion Tracker</h1>
+
+       <% if logged_in? %>
+        <li><a href="/users/show">My Profile</a></li>
+        <li><a href="/signout">Sign out</a></li>
+      <% end %>
+
+
       
       <%= yield %>
  
