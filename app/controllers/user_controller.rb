@@ -1,6 +1,5 @@
 
 class UsersController < ApplicationController 
-
   use Rack::Flash
 
   get '/signup' do 
@@ -11,10 +10,9 @@ class UsersController < ApplicationController
     end
   end
 
-
   get '/users/show' do
     @user = User.find(session[:id])
-    erb :'/users/home'
+    erb :'/users/show'
   end
 
   post '/signup' do
@@ -25,18 +23,6 @@ class UsersController < ApplicationController
       redirect "/failure"
     end
   end
-
-  # post '/signup' do 
-    
-  #   # if params[:username] == "" || params[:password] == ""
-  #   #   redirect to :"/signup"
-  #   # else
-  #     @user = User.create(username: params[:username], password: params[:password])
-  #     session[:id] = @user.id
-  #     redirect :"/collections"
-  #   # end
-  # end
-
 
   get '/login' do 
     erb :'/users/login'
@@ -51,7 +37,6 @@ class UsersController < ApplicationController
       flash.now[:notice] = "Successfully created new user."
       redirect '/users/show'
     else
-      flash[:notice] = "Successfully created new user."
       flash[:error] = "Your login information seems to be incorrect."
       redirect to '/login'
     end
@@ -59,20 +44,9 @@ class UsersController < ApplicationController
 
   get '/signout' do
     session.clear
-    flash.now[:notice] = "Successfully signed out."
+    flash[:notice] = "Successfully signed out."
     redirect '/login'
   end
-
-    #   post "/login" do
-    #     user = User.find_by(:username => params[:username])
-    #     if user && user.authenticate(params[:password])
-    #         session[:user_id] = user.id
-    #         redirect "/success"
-    #     else
-    #         redirect "/failure"
-    #     end
-    # end
-
 
 
 

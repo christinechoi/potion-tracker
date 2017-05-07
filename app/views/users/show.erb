@@ -1,6 +1,15 @@
 
 
+<br>
 
-<h3> Your Collections: </h3>
+Welcome, <%= @user.username %>!
 
-<%= @user.name %>
+You currently have <%= @user.collections.count %> collections.
+
+
+<h3><a href="/collections/new"> Create a New Collection </a></h3>
+
+<h3><a href="/collections"> See All Collections </a></h3>
+
+
+
