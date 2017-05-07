@@ -38,29 +38,15 @@ class UsersController < ApplicationController
       flash[:notice] = "Successfully created new user."
       redirect '/users/show'
     else
-      flash[:notice] = "Error logging in - please try again." #not showing
+      flash[:notice] = "Error logging in - please try again."
       redirect to "/login"
     end
   end
 
   get '/signout' do
     session.clear
-    flash[:notice] = "Successfully signed out." #not showing
+    flash[:notice] = "Successfully signed out." 
     redirect '/login'
   end
-
-
-
-
-  # get '/users/:id' do 
-  #   #redirect_if_not_logged_in
-
-  #   @user = User.find(params[:id])
-    
-  #   erb :'/users/show'
-  # end
-
-
-
 
 end

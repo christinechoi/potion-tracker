@@ -13,8 +13,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products' do 
-    # binding.pry
-    # flash.now[:notice] = "Successfully created new product." 
+    
     if params[:product][:name] == "" || params[:product][:brand] == "" 
       flash[:notice] = "Name and Brand fields required."
     
@@ -49,7 +48,6 @@ class ProductsController < ApplicationController
 
     erb :'/products/show'
   end
-
 
 
   delete '/products/:id/delete' do #delete action
