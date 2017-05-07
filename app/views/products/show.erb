@@ -6,15 +6,13 @@
 <% if flash.has?(:notice) %>
   <%= flash[:notice] %>
 <% end %>
+<br>
+<h4>Product Name: <%= @product.name %></h4>
+<h4>Brand: <%= @product.brand %></h4>
+<h4>Description: <%= @product.description %></h4>
 
-<h3>Name: <%= @product.name %></h3>
+<h4><a href="/products/<%= @product.id %>/edit">Click to edit </a></h4>
 
-<h3>Brand: <%= @product.brand %></h3>
-
-<h3>Description: <%= @product.description %></h3>
-
-<h3><a href="/products/<%= @product.id %>/edit">Click to edit </a></h3>
-
-<h3><a href="/collections"> Back to Collections </a></h3>
+<h4><a href="/collections"> Back to Collections </a></h4>
 
 
