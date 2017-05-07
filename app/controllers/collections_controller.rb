@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
 
   get '/collections' do 
     redirect_if_not_logged_in
-    @collections = Collection.all 
+    @collections = current_user.collections
 
     erb :'collections/index'
   end
