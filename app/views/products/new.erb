@@ -19,7 +19,7 @@
   
   <br>
   <h4>Collection:</h4>
-  <%@collections.each do |collection|%>
+  <% @collections.each do |collection|%>
     <input type="checkbox" name="product[collection_ids][]" value="<%=collection.id%>" id="<%=collection.id%>"><%=collection.name%></input>
   <%end%>
 
