@@ -3,12 +3,14 @@ class ProductsController < ApplicationController
 
   get '/products' do 
     redirect_if_not_logged_in
+
+    @products = current_user.all_products
     erb :'/products/index'
   end
 
   get '/products/new' do 
     redirect_if_not_logged_in
-    @collections = Collection.all 
+    @collections = current_user.collections.all #Collection.all 
     erb :'/products/new'
   end
 
