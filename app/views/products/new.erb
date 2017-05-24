@@ -5,12 +5,6 @@
 <h2> Add a New Product: </h2>
 
 
-
-
-<% if flash.has?(:notice) %>
-  <%= flash[:notice] %>
-<% end %>
-
 <form method="post" action="/products">
 
   <h4>Name: <input type="text" name="product[name]"></h4>

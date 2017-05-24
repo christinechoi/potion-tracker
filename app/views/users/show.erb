@@ -2,9 +2,9 @@
 
 <br>
 
-Welcome, <%= @user.username %>!
+Welcome, <%= current_user.username %>!
 
-You currently have <%= @user.collections.count %> collections.
+You currently have <%= current_user.collections.count %> collections.
 
 
 <h3><a href="/collections/new"> Create a New Collection </a></h3>

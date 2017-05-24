@@ -12,16 +12,19 @@
     <div class="container">
       <h1>Potion Tracker</h1>
 
-       <% if logged_in? %>
+      <% if logged_in? %>
         <li><a href="/users/show">My Profile</a></li>
         <li><a href="/signout">Sign out</a></li>
+      <% else %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
       <% end %>
 
-    
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
       
       <%= yield %>
- 
- 
  
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

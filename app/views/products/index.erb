@@ -1,18 +1,15 @@
 
-
-
 <h3> All Products: </h3>
 
 
-
-<% if flash.has?(:notice) %>
-  <%= flash[:notice] %>
-<% end %>
 <br>
 
 <% current_user.collections.each do |collection| %>
-  <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
-
+  
+  <% collection.products.each do |product| %>
+    <ul><a href="/products/<%= product.id %>"><%= product.name %></a></ul>
+    
+  <% end %>
 <% end %>
 
 <h3><a href="/collections"> Back to Collections </a></h3>
