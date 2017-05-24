@@ -21,17 +21,23 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def redirect_if_not_logged_in
-      redirect :'/signup' if !session[:id]
+      redirect :'/signup' if !session[:user_id]
     end
 
     def logged_in?
-      !!session[:id]
+      !!current_user
     end
+
+    # Todo: 
+      # if I call logged_in? and current_user in the same view, controller, etc.. I am making multiple database calls for the same object.
+      # Look up memoization and the ||= operator for the current_user function. 
+      # is instantiate a instance variable that holds the value of the object
 
     def current_user
-      User.find(session[:id])
-    end
 
+      current_user ||= User.find_by(id: session[:user_id]) 
+      #if session[:user_id]
+    end
 
   end
 
