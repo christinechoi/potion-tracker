@@ -1,56 +1,89 @@
 class ProductsController < ApplicationController 
 
-
   get '/products' do 
     redirect_if_not_logged_in
 
-    @products = current_user.all_products
+    @products = current_user.products
     erb :'/products/index'
   end
 
   get '/products/new' do 
     redirect_if_not_logged_in
-    @collections = current_user.collections.all #Collection.all 
+    @collections = current_user.collections.all
     erb :'/products/new'
   end
 
   post '/products' do 
-    
-    if params[:product][:name] == "" || params[:product][:brand] == "" 
-      flash[:notice] = "Name and Brand fields required."
-    
-      redirect :'/products/new' 
-    else
-      @product = Product.create(name: params[:name], brand: params[:brand], description: params[:description])
-      @product = Product.create(params[:product])
+      # Todo: 
+        # add validations to the product 
+        # what happens if the validation fails?
 
+    @product = Product.create(name: params[:product][:name], brand: params[:product][:brand], description: params[:product][:description], collection_ids: params[:product][:collection_ids])
+    if @product.save 
+      flash[:notice] = "Successfully added new product."
+      redirect "products/#{@product.id}"
+    else 
+      flash[:notice] = "Sorry, try again."
+      redirect to 'products/new'
     end
-    flash[:notice] = "Successfully added new product."
-    redirect "products/#{@product.id}"
+    
   end
 
   get '/products/:id' do 
     redirect_if_not_logged_in
-    @product = Product.find(params[:id])
+    # Todo
+      # What happens if the product exist?
+    
+    @product = Product.find_by_id(params[:id])
 
-    erb :'/products/show'
+    if current_user.all_products.include?(@product)
+      # binding.pry
+      erb :"/products/show"
+    else
+      # binding.pry
+      erb :'/products/index'
+    end
+
+    
   end
 
   get '/products/:id/edit' do 
     redirect_if_not_logged_in
+
+    # Todo
+      # What happens if the product exist?
     @product = Product.find(params[:id])
 
-    erb :'/products/edit'
+    if current_user.all_products.include?(@product)
+      erb :"/products/edit"
+    else
+      # binding.pry
+      flash[:notice] = "Sorry, product could not be found."
+      redirect '/products'
+    end
+
+    
   end
 
-  post '/products/:id' do 
-    flash[:notice] = "Successfully updated product." 
+  patch '/products/:id' do 
+    # Todo:
+      # make sure update works before notification and redirect 
     @product = Product.find(params[:id])
-    @product.update(name: params[:name], brand: params[:brand], description: params[:description])
-
-    erb :'/products/show'
+    # Todo:
+      # update returns a true or false, make sure to handle that with a if else in case of failure
+    if @product
+      @product.update(name: params[:name], brand: params[:brand], description: params[:description])
+      flash[:notice] = "Product successfully updated."
+      binding.pry
+      redirect "/products/#{@product.id}"
+    else
+      flash[:notice] = "Update not successful. Please try again."
+      binding.pry
+      redirect "/products/#{@product.id}"
+    end
   end
 
+  
 
   delete '/products/:id/delete' do #delete action
     @product = Product.find_by_id(params[:id])
@@ -58,6 +91,4 @@ class ProductsController < ApplicationController
     flash[:notice] = "Product deleted."
     redirect to '/products'
   end
-
-
 end
