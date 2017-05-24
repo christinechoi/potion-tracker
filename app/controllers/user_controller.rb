@@ -11,17 +11,18 @@ class UsersController < ApplicationController
   end
 
   get '/users/show' do
-    @user = User.find(session[:id])
+    redirect_if_not_logged_in
     erb :'/users/show'
   end
 
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
     if user.save
-      flash.now[:notice] = "Successfully created new user."
+      flash[:notice] = "Successfully created new user."
       redirect "/login"
     else
-      redirect "/failure"
+      flash[:notice] = user.errors.full_messages
+      redirect "/signup"
     end
   end
 
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
 
     @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       flash[:notice] = "Successfully created new user."
       redirect '/users/show'
     else
