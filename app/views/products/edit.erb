@@ -5,11 +5,13 @@
 
 <form method="post" action="/products/<%= @product.id %>">
 
+  
+
   <h4> Name: <input type="text" name="name" value="<%= @product.name %>"></h4>
   <h4> Brand: <input type="text" name="brand" value="<%= @product.brand %>"></h4>
   <h4> Description: <input type="text" name="description" value="<%= @product.description %>"></h4>
   <input type="submit" value="Update Product" name="submit">
-
+  <input id="hidden" type="hidden" name="_method" value="patch">
 </form>
 
 
