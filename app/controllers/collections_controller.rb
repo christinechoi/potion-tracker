@@ -35,13 +35,14 @@ class CollectionsController < ApplicationController
   end
 
 
+
   post '/collections' do 
     redirect_if_not_logged_in
     @collection = current_user.collections.create(name: params[:name])
     
     if @collection.save 
       flash[:notice] = "Successfully added new collection."
-      redirect "/collections/show"
+      redirect "/collections/#{@collection.id}"
     else
       flash[:notice] = "Collection must have a name."
       erb :"/collections/new" 
